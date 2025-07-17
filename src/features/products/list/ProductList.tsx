@@ -26,14 +26,21 @@ export const ProductList: React.FC = () => {
     const product: Product = products[index];
 
     return (
-      <Box style={style} className="px-4 py-2">
-        <Paper elevation={2} className="relative p-4">
+      <Box style={style} sx={{ px: 2, py: 1 }}>
+        <Paper elevation={2} sx={{ position: "relative", p: 2 }}>
           <Button
             variant="text"
             color="error"
             size="small"
             onClick={() => dispatch(removeProduct(product.id))}
-            className="!absolute top-2 right-2 !min-w-[0]"
+            sx={{
+              position: "absolute",
+              top: 8,
+              right: 8,
+              minWidth: 0,
+              padding: 0,
+              lineHeight: 1,
+            }}
           >
             X
           </Button>
@@ -61,7 +68,7 @@ export const ProductList: React.FC = () => {
   //display all products
   return (
     <>
-      <Box display="flex" justifyContent="flex-end" mb={2}>
+      <Box sx={{ display: "flex", justifyContent: "flex-end", mb: 2 }}>
         <Button
           variant="outlined"
           color="error"
