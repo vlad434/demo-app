@@ -1,5 +1,5 @@
-import { ProductForm } from "./features/products/ProductForm";
-import { ProductList } from "./features/products/ProductList";
+import { ProductForm } from "@products/form/ProductForm";
+import { ProductList } from "@products/list/ProductList";
 import { Container, Typography } from "@mui/material";
 
 function App() {

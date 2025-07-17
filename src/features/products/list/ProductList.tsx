@@ -2,11 +2,11 @@ import React from "react";
 
 //redux
 import { useSelector, useDispatch } from "react-redux";
-import type { RootState, AppDispatch } from "../../store";
-import { removeProduct, clearProducts } from "./productSlice";
+import type { RootState, AppDispatch } from "@app/store";
+import { removeProduct, clearProducts } from "@products/slice/productSlice";
 
 //types
-import type { Product } from "../../types/product";
+import type { Product } from "@/types/product";
 
 //virtualized lists
 import {

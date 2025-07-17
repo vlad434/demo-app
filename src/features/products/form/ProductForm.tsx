@@ -1,32 +1,33 @@
 import React from "react";
 
 //redux
-import type { AppDispatch } from "../../store";
+import type { AppDispatch } from "@app/store";
 import { useDispatch } from "react-redux";
-import { addProduct } from "./productSlice";
+import { addProduct } from "@products/slice/productSlice";
 
 //types
-import type { Product } from "../../types/product";
+import type { Product } from "@/types/product";
 
 //validation schema
-import { productSchema, type ProductFormData } from "./schema";
+import { productSchema, type ProductFormData } from "@products/schema/schema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 //other
-import { TextField, Button, Box } from "@mui/material";
+import { Button, Box } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
 
 //components
+import { FormInputText } from "@components/FormInputText";
 
 export const ProductForm: React.FC = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<ProductFormData>({
+  const { handleSubmit, reset, control } = useForm<ProductFormData>({
     resolver: zodResolver(productSchema),
+    defaultValues: {
+      name: "",
+      price: 0,
+      description: "",
+    },
   });
 
   const dispatch = useDispatch<AppDispatch>();
@@ -46,26 +47,20 @@ export const ProductForm: React.FC = () => {
       onSubmit={handleSubmit(onSubmit)}
       sx={{ display: "flex", flexDirection: "column", gap: 2, mb: 4 }}
     >
-      <TextField
-        label="Name"
-        {...register("name")}
-        error={!!errors.name}
-        helperText={errors.name?.message}
-      />
+      <FormInputText name="name" label="Name" control={control} />
 
-      <TextField
+      <FormInputText
+        name="price"
         label="Price"
+        control={control}
         type="number"
-        {...register("price")}
-        error={!!errors.price}
-        helperText={errors.price?.message}
       />
-
-      <TextField
+      <FormInputText
+        name="description"
         label="Description"
+        control={control}
         multiline
         rows={3}
-        {...register("description")}
       />
 
       <Button type="submit" variant="contained">

@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { Product } from "../../types/product";
+import type { Product } from "@/types/product";
 import {
   loadProductsFromStorage,
   saveProductsToStorage,
-} from "../../utils/localStorage";
+} from "@utils/localStorage";
 
 type ProductState = {
   products: Product[];
